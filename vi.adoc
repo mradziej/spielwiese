@@ -15,5 +15,36 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 wow.
 
-| table
+== plantuml integration
+
+participant RFD
+participant POC
+participant POC2
+participant Integration
+participant Customer
+
+
+autonumber
+activate RFD
+activate POC
+activate POC2
+activate Customer
+
+RFD -> POC: To start, branch off new project
+POC -> POC: work on POC
+RFD -> POC: rebase if RFD changes
+POC -> Customer: POC can be shipped
+POC -> POC: add documents
+activate Integration
+POC -> Integration: submit to new branch for integration
+POC2 -> Integration: submit other POC2 if necessary
+RFD -> Integration: rebase if necessary
+note over Integration
+The integration branch is checked for consistency with automatic tooling
+Are the documents consistent with the code?
+Before submission to the RFD branch, relevant experts review the changes
+end note
+Integration -> RFD: Finally, submit to RFD
+
+@enduml
 
